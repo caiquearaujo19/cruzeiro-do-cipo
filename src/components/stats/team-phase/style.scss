@@ -1,0 +1,40 @@
+@import '../../../utils/sass-variables.scss';
+
+.team-phase {
+  background-color: $main-color;
+  background-image: url('../../../assets/images/chart.png');
+  background-size: 300px;
+  background-position: center right;
+  background-repeat: no-repeat;
+  color: white;
+  padding-bottom: 20px;
+
+  &__percentage {
+    text-align: center;
+    font-size: 70px;
+    font-weight: bold;
+    margin-bottom: 25px;
+  }
+
+  &__numbers {
+    display: flex;
+    justify-content: center;
+
+    &__item {
+      text-align: center;
+      padding: 0 15px;
+      &:not(:last-child) {
+        border-right: 1px solid rgba(#FFFFFF, 0.15);
+      }
+
+      &__value {
+        font-size: 30px;
+        font-weight: bold;
+      }
+
+      &__title {
+        font-size: 14px;
+      }
+    }
+  }
+}

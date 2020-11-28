@@ -1,0 +1,16 @@
+.top-bar {
+  height: 46px;
+  width: 100vw;
+  position: fixed;
+  background: linear-gradient(#00000099, #00000000);
+  display: flex;
+  align-items: center;
+
+  &-button {
+    height: 46px;
+    width: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
