@@ -1,20 +1,10 @@
 import React from 'react'
+import SectionTitle from '../../section-title'
 import './style.scss'
 
-import SectionTitle from '../../section-title'
+export default function GoalsCount(goals) {
 
-export default function GoalsCount() {
-
-  const numbers = [
-    {
-      value: 26,
-      title: "Gols feitos"
-    },
-    {
-      value: 18,
-      title: "Gols sofridos"
-    }
-  ]
+  const numbers = goals["goals"]
 
   const renderNumber = (item, index) => {
     return(
@@ -29,7 +19,7 @@ export default function GoalsCount() {
     <article className="goals-count">
       <SectionTitle title="Gols"/>
       <div className="goals-count__numbers">
-        {numbers.map((item, i) => (renderNumber(item, i)))}
+        {numbers.length ? numbers.map((item, i) => (renderNumber(item, i))): null}
       </div>
     </article>
   )

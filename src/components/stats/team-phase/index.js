@@ -1,28 +1,21 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import './style.scss'
 
 import SectionTitle from '../../section-title'
 
-export default function TeamPhase() {
+export default function TeamPhase(numbers) {
 
-  const numbers = [
-    {
-      value: 16,
-      title: "Jogos"
-    },
-    {
-      value: 8,
-      title: "Vitórias"
-    },
-    {
-      value: 4,
-      title: "Empates"
-    },
-    {
-      value: 4,
-      title: "Derrotas"
+  const stats = numbers["numbers"]
+  const [percentage, setPercentage] = useState(0)
+
+  useEffect(() => {
+    if(stats.length) {
+      let points = (stats[1].value * 3) + stats[2].value
+      let totalPoints = stats[0].value * 3
+      let result = (points / totalPoints) * 100
+      setPercentage(result.toFixed(0))
     }
-  ]
+  }, [stats])
 
   const renderNumber = (item, index) => {
     return (
@@ -36,9 +29,9 @@ export default function TeamPhase() {
   return (
     <article className="team-phase">
       <SectionTitle title="Aproveitamento"/>
-      <div className="team-phase__percentage">58%</div>
+      <div className="team-phase__percentage">{percentage}%</div>
       <div className="team-phase__numbers">
-        {numbers.map((item, i) => (renderNumber(item, i)))}
+        {stats.length ? stats.map((item, i) => (renderNumber(item, i))) : null}
       </div>
     </article>
   )

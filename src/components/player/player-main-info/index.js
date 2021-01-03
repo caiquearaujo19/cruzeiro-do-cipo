@@ -1,24 +1,28 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import './style.scss'
 
 import PlayerAvatar from '../../player-avatar'
 
 export default function PlayerMainInfo({player}) {
 
-  const numbers = [
-    {
-      value: 10,
-      title: "Jogos"
-    },
-    {
-      value: 8,
-      title: "Gols"
-    },
-    {
-      value: 4,
-      title: "Assist."
-    }
-  ]
+  const [numbers, setNumbers] = useState([])
+
+  useEffect(() => {
+    setNumbers([
+      {
+        value: player.matches,
+        title: "Jogos"
+      },
+      {
+        value: player.goals,
+        title: "Gols"
+      },
+      {
+        value: player.assists,
+        title: "Assist."
+      }
+    ])
+  }, [player])
 
   const renderNumber = (item, index) => {
     return (

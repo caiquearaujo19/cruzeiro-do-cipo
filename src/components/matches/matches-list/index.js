@@ -6,8 +6,8 @@ import MatchesListItem from './matches-list-item'
 export default function MatchesList({matches}) {
   return (
     <ul className="matches-list">
-      {matches.map(match => (
-        <MatchesListItem key={match.id} match={match} />
+      {Object.keys(matches).map(id => (
+        <MatchesListItem key={id} matchId={id} match={matches[id]} />
       ))}
     </ul>
   )

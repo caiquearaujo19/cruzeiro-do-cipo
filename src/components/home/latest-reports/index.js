@@ -1,16 +1,15 @@
 import React from 'react'
-import './style.scss'
-
 import SectionTitle from '../../section-title'
 import ReportsListItem from './reports-list-item'
+import './style.scss'
 
 export default function LatestReports({reports}) {
   return (
     <section className="latest-reports">
       <SectionTitle title="Últimos informes" color="blue"/>
       <ul className="latest-reports__list">
-        {reports.map(item => (
-          <ReportsListItem key={item.id} data={item}/>
+        {Object.keys(reports).map(id => (
+          <ReportsListItem key={id} reportId={id} data={reports[id]}/>
         ))}
       </ul>
     </section>
