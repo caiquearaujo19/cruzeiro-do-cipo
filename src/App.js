@@ -10,6 +10,7 @@ import MatchScreen from './screens/match'
 import PlayerScreen from './screens/player'
 import TopScorersScreen from './screens/top-scorers'
 import TopAssistsScreen from './screens/top-assists'
+import RegisterScreen from './screens/register'
 
 function App() {
   return (
@@ -48,6 +49,10 @@ function App() {
           <Route
             path="/top-assists"
             component={TopAssistsScreen}
+          />
+          <Route
+            path="/register"
+            component={RegisterScreen}
           />
         </Switch>
       </BrowserRouter>
