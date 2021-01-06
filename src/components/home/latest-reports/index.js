@@ -8,7 +8,7 @@ export default function LatestReports({reports}) {
     <section className="latest-reports">
       <SectionTitle title="Últimos informes" color="blue"/>
       <ul className="latest-reports__list">
-        {Object.keys(reports).map(id => (
+        {Object.keys(reports).reverse().map(id => (
           <ReportsListItem key={id} reportId={id} data={reports[id]}/>
         ))}
       </ul>
