@@ -11,7 +11,10 @@ export default function MatchEvents({scorers, assists}) {
       <SectionTitle title="Gols e assistências" color="blue"/>
       <ul className="match-events__list">
         {Object.keys(scorers).map(id => (
-          <MatchEventsListItem key={id} scorer={scorers[id]} assist={assists[id]}/>
+          <MatchEventsListItem
+            key={id}
+            scorer={scorers[id]}
+            assist={assists !== undefined ? assists[id] : null}/>
         ))}
       </ul>
     </section>

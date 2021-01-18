@@ -32,7 +32,7 @@ export default function MatchScreen() {
     <article className="match-screen">
       <TopBar/>
       <MatchInfo match={match}/>
-      <MatchEvents scorers={scorers} assists={assists}/>
+      { scorers !== undefined ? <MatchEvents scorers={scorers} assists={assists}/> : null }
     </article>
   )
 }
