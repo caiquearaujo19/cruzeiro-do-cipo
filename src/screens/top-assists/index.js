@@ -19,7 +19,12 @@ export default function TopAssistsScreen() {
         Object.keys(players).map(id => {
           let assist = players[id]
           if(assist.assists > 0) {
-            assistsList.push(assist)
+            assistsList.push(
+              {
+                id: id,
+                ...assist
+              }
+            )
           }
         })
         assistsList.sort(orderListByAssists)

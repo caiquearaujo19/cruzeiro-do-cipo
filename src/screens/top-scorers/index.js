@@ -20,7 +20,12 @@ export default function TopScorersScreen() {
         Object.keys(players).map(id => {
           let scorer = players[id]
           if(scorer.goals > 0) {
-            scorersList.push(scorer)
+            scorersList.push(
+              {
+                id: id,
+                ...scorer
+              }
+            )
           }
         })
         scorersList.sort(orderListByGoals)
