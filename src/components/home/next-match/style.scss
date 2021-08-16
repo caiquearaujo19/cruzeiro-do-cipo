@@ -1,6 +1,7 @@
 @import '../../../utils/sass-variables.scss';
 
 .next-match {
+  height: 190px;
   background-color: $main-color;
   background-image: url('../../../assets/images/fox.png');
   background-size: cover;
@@ -17,6 +18,7 @@
     &__away {
       height: 50px;
       width: 50px;
+      border-radius: 50%;
     }
 
     &__vs {
@@ -32,7 +34,7 @@
       font-weight: bold;
       color: white;
       text-align: center;
-      margin-bottom: 5px;
+      margin-bottom: 4px;
     }
 
     &__place-and-date {
@@ -49,4 +51,24 @@
       }
     }
   }
+
+  &--loading {
+    .next-match__emblems {
+      &__home,
+      &__away {
+        @extend .loading-next-match;
+      }
+    }
+  }
+}
+
+.loading-next-match {
+  background-color: rgba(#FFFFFF, 0.5);
+  animation: blinking 1s ease-in-out infinite;
+}
+
+@keyframes blinking {
+  0%   { opacity: 0.3 }
+  50%  { opacity: 1 }
+  100% { opacity: 0.3 }
 }

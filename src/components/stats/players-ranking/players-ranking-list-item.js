@@ -6,7 +6,6 @@ import './players-ranking-list-item.scss'
 export default function PlayersRankingListItem({item, context}) {
   return (
     <li className="players-ranking-list-item">
-      {console.log(item)}
       <Link className="players-ranking-list-item__content" to={`/player/${item.id}`}>
         <PlayerAvatar size={40} photo={item.photo}/>
         <div className="players-ranking-list-item__content__name">{item.name}</div>

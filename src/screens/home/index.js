@@ -8,14 +8,17 @@ import './style.scss'
 export default function HomeScreen() {
 
   const [nextMatch, setNextMatch] = useState({});
+  const [loadingNextMatch, setLoadingNextMatch] = useState(false);
   const [reports, setReports] = useState({});
 
   useEffect(() => {
+    setLoadingNextMatch(true);
     firebaseDb.child('next-match').on('value', snapshot => {
       if(snapshot.val() !== null) {
         setNextMatch({
           ...snapshot.val()
-        })
+        });
+        setLoadingNextMatch(false);
       }
     })
     firebaseDb.child('reports').on('value', snapshot => {
@@ -29,7 +32,7 @@ export default function HomeScreen() {
 
   return (
     <article className="home-screen">
-      <NextMatch data={nextMatch}/>
+      <NextMatch data={nextMatch} loading={loadingNextMatch}/>
       <LatestReports reports={reports}/>
       <MainTabs activeTab={0}/>
     </article>
