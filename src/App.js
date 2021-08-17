@@ -16,8 +16,13 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Redirect from="/" to="/home" />
         <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => <Redirect to="/home"/>}
+          />
+
           <Route
             path="/home"
             component={HomeScreen}
