@@ -4,7 +4,8 @@ import firebaseDb from '../../firebase'
 export default function RegisterScreen() {
     
   useEffect(() => {
-    // registerMatch();
+    registerMatch();
+    // registerPlayer();
   }, [])
 
   const registerReport = () => {
@@ -25,11 +26,11 @@ export default function RegisterScreen() {
 
   const registerPlayer = () => {
     let player = {
-        name: "Ruan",
-        photo: "data:image/jpg;base64,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",
-        matches: 3,
-        goals: 1,
-        assists: 0
+        name: "Riquelme",
+        photo: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCABaAFoDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiuX8Y+MYfC8CIqxzXkyExRFjlTkAMwA+797uCSMDuVqMXJ2QN2Ogvb620+3M91L5cY74LHrjoOT1rnLnxULyURaTe2CZRsmUh3z2+UMMEc9c5rzi68ea3ctlpY0YDG5F6/nxXOahqNzeXCXN3MXYdScKB+VV9Wqt6uyD2kF5npeptqquZ7jxVFAW5+VnjB4A4UPjt2FctcXlvZv5lvqkE0ituxFauvP16Vwt94ghizHFiU4+9uLAH2rN/4SC5bbuSPAPIZSKFShF+/K4Ob+yj0Cx8RalDqNui6pdxwebgxJOyoM8njOOtem3Hi27063imkiS4Rj8wPyt+BHA/KvBdJ1iK51COKcKh3ZBB4HtXqupEy6JanrlAcj1rlxs3GacGdmFhGcbSR6VZaraXyRmKTaz/dR8Bj1/PgE8VdrzSBy8FhscKySA5JxggE0nw++Ix1WUaTrTqt2XItrg8CXnhG/wBrsD/F06/edCUqkbmVekqctD0yiiitTAz9c1aHQtEu9TnG5LePcF5G5jwq5AOMkgZxxnNfOmpajc6rqlzfXR3T3D72AJIHsMknAHAHYAV6N8Zri7ks7GzgmEVurmSU7VYF8YXOemAT9d3tXkrw6kAClxbkHqWgGa7MM4qLkRUizQeTyVZnIC+/FcvqWoyXdwVU7Yk+Xg/exS3X9qXTtFIUCKxG5UVcj14Oay3G2VomLEoSvPPSivVk9EEIrce5DKVwhGARuBGPxpAHZWfYpAwOATzTUHp+o4q2IG8pUjDM787VGSfWuQ2TId3yAF++crwQa6HQvFOoWM4tmmM1scKFkPK1zRGR0wOoJ70sCs06GIM8mc7FGSSD6VE0pLUqnJxkrH0HZxzy6MPLIEiruGfxryNIzbTPDKSJ0Yo6nsw616poOpB/DiXMg2MEAYNwR9a4bxZYwr4juGAZBcKsowO54JqcBLlnynRjIXhznsnw48VP4k0Forn/AI/bErFKcsTIuPlck9zhgeTyCeMgV2VfOngq6u/DHizTr6O6jawuWFvcrNtTbG5HO7BxtO1u2duMjNfRddVaHLL1OCLujwPxJ4nhvdS17S9WnlW4gvZhaTxxZDAOVWMgDjCgDPtmuZLfKvAHI4Bz2qpcXaNqUzxYKSP5kZI6qeRU+flQ5rqw9PkQq07spmJ7i8iijUs0hIwBkmsO50+f+2mtSOp3kgdAfWt9Lg2eoWtwvWKTd+damrWtrNrlpcW3Ed3DjeOhbvg1yYyUoyt0OnDU4zQWHguxe5jlud7R7Rx0Ga6KDwlY2+rm8DgQxwbEj9yOo9ayY/CGstult9RaJR8y854rQi0fUpdGZp9TczE7dyivJlUd78x6UaUbbGNc+C7dLaeJXDSKSyOTjA7Cue8P6XcR+I/LMO94VL5xwR612Mfge9CLcveSkKMuXfIb8KteH7CJ9buPl3cIiOOMAHkVcannch011RqabPusrpCizoFEwSPnIIHAx15rj/FV+t3dtKkJjayUK5zncD3rvr3RbA6mssR1OzzgExr+6POeQVrz7U5CviC+trlUCKxhO2PaWRlyrH8MGuvCRXtLmGKqp07Iijn+06dHznDV9KaJcy3mg6ddTPvlmtYpHbAG5ioJPHHevlbTme2vJ9OkYlkOYyf4hW0QQTxXrToqrFa2PIU+VkfjGyi07xHdx20eyCK5kiRRkhVDEAZPsKqxPvj4Oa7/AOMWkGHVlvgG2XUYbJI++gCkAdQANh59T+HmtoZ7hFVEKj+9jiqpPmimglo9R1yBhSxAIfvWZDqht2jhk3MySkxknhQTzXRJaR2zbpFRyeS2Mis7xNbma1jnVMxw4ztxgqe/0qK9PmiXSqcsjudO8RK+kLGX8skbcZ5JqWLVpzpptjptwWU/6zzBsxXm2gX25o4JmUoT8pbkCvQ4LV/sODFppGOHJOceuK+dqU1FtWPepVVJFt9e8jTWjEuCFGUJzj2rn9J8Ta1pk1w9vBaPaTE5WVCSx9jWbqBe5vhY2rKWyRM6fdAH8q0YoY4dGAU5EcuFJ781thYRU0pLcyxLlKDa6HR2HjyzhdUvbN7Vh1ZMuuaoajY2/inxbPeWOoxlHto5X24Lbh8pBXtwKwLqS3Sd1YBi3QDqKZBajes8E7QzDo6nGQf517P1G3vU3Znj/WLq0yxrHh6ePw3a+J1mDSQuI5kUdFr2PQvA/hm+8P6beSadvkntYpWbz5BksgJPDY715z4Utppp7nRb+OW6sb/IYRDLIACzMowecAkAAk9AD0r32uabrU24TZpaEveRz3jfw8fE3hW7sIzi5A82A/7Y7dQOQSvPA3Z7V4QYRZyS28kTRmNipVlwy44wR2NfTFeafETwLLfltU0W3Y3O1nuYkAxJjHKjOd5yTgDnB6NgNthayi+WRnVi3qjy9GTcysQVx09qqXUflxTRqp8tkOc80yzl8yQZPJUj8RzV6ch4nOMkgCu96qxzp2ZyN1psllLGxX9zON8Tr374+tCXdzsCi5k2/wC9XQhbeSIaPqDiO3kbfa3LDIjb0J7CtOy+HNw9xG815G9uQGDRcqR7V4OJjyS949jDvmVkZWkR+TaGXO6WQ9e5rVusxWsFr0Zj5jD0B5Ga0510rw42GKzSrkIuQfzrnnubnUbqS5mCpvYEAdl7CngqEp1FO2hWLrKMORbgsolMxOPMDgrx2qePCuoyBgYqjnZcMVHBxiu/8EeB5PEM66jfq0elqc46G4I7D0X1P4DnJHuSmoK7PGSb0R1fw38OmGym1W9hO642i3SReiAht4Ge7BSMjI2gjrXoFNjjjhiSKJFjjRQqoowFA6ADsKdXkVJucnJnVGKirIKKKKgo4/xJ8OtJ164F5B/xL74EsZYYxtkJOSXXjcevOQeec4Ary3UPDGp6dNNAYftAt2Jme3y4jAHVhgMg64LAAgZGRzX0FRXRSxEoeZnKmpHy5Lax3tsY5QcKdoK9RVE6TqdudlvezmPt+8PAr6jn0XSrqd57jTLKaZ8b5JIFZmwMDJIyeAK+fh9012x5a2rRleVPRMwrbR3E3mXT+a+Mnrn866DTPD+qasQum6fPOuSm8LhAQM4Ln5Qcep7j1r1rwToulXfhCxnudMs5pm8zdJJArMcSMOSR6V2VZTrey0iilFz1bPOPDvwptbK4jvNanW7mQhhbRj9zkZ+8SMuPunGAOCDkV6JFFHBEkUUaxxooVEQYCgcAAdhT6K4p1JTd5M2UUtgoooqBn//Z",
+        matches: 2,
+        goals: 0,
+        assists: 1
     }
     firebaseDb.child("players").push(
         player,
@@ -45,11 +46,11 @@ export default function RegisterScreen() {
     let match = {
         away: true,
         homeTeam: {
-            emblemShape: 4,
-            goals: 0,
-            name: "Ceará da Várzea da Esmera"
+            emblemShape: 1,
+            goals: 1,
+            name: "Atlético Umarizeiro"
         },
-        date: "08/08/2021",
+        date: "15/08/2021",
         awayTeam: {
             goals: 1,
             name: "Cruzeiro do Cipó",
@@ -62,7 +63,7 @@ export default function RegisterScreen() {
             ],
             assists: [
                 {
-                    name: "Bodó"
+                    name: "Riquelme"
                 }
             ]
         }

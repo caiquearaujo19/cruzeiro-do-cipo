@@ -2,9 +2,9 @@ import React from 'react'
 import SectionTitle from '../../section-title'
 import './style.scss'
 
-export default function GoalsCount(goals) {
+export default function GoalsCount(props) {
 
-  const numbers = goals["goals"]
+  const numbers = props["goals"]
 
   const renderNumber = (item, index) => {
     return(

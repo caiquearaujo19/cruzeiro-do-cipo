@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import TopBar from '../../components/top-bar'
 import { useParams } from "react-router-dom"
 import PlayerMainInfo from '../../components/player/player-main-info'
+import Averages from '../../components/player/averages'
 import firebaseDb from '../../firebase'
 import './style.scss'
 
@@ -23,6 +24,7 @@ export default function StatsScreen() {
     <article className="player-screen">
       <TopBar/>
       <PlayerMainInfo player={player}/>
+      <Averages player={player}/>
       <section className="player-screen__coming-soon">
         Em breve mais informações
       </section>
