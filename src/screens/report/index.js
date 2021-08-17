@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import MetaTags from 'react-meta-tags';
 import TopBar from '../../components/top-bar'
 import { useParams } from "react-router-dom"
 import firebaseDb from '../../firebase'
@@ -19,6 +20,12 @@ export default function ReportScreen() {
 
   return (
     <article className="report-screen">
+      <MetaTags>
+        <title>{report.title}</title>
+        <meta id="meta-description" name="description" content={report.content} />
+        <meta id="og-title" property="og:title" content={report.title} />
+        <meta id="og-image" property="og:image" content={report.image} />
+      </MetaTags>
       <TopBar/>
       <section className="report-screen__image" style={{backgroundImage: `url(${report.image})`}} />
       <article className="report-screen__content">
