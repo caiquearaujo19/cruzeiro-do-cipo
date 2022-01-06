@@ -2,10 +2,10 @@ import React from 'react'
 import SectionTitle from '../../section-title'
 import './style.scss'
 
-export default function Averages({player}) {
+export default function Averages({player, year}) {
 
-    const goalAverage = (player.goals / player.matches).toFixed(2)
-    const assitAverage = (player.assists / player.matches).toFixed(2)
+    const goalAverage = player[year] ? (player[year].goals / player.matches).toFixed(2): 0
+    const assitAverage = player[year] ? (player[year].assists / player.matches).toFixed(2) : 0
 
     const renderItem = (value, title) => {
         return(

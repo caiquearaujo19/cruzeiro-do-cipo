@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { useLocation } from "react-router-dom"
 import TopBar from '../../components/top-bar'
 import SectionTitle from '../../components/section-title'
 import {ReactComponent as AssistsIcon} from '../../assets/icons/assists.svg'
@@ -11,14 +12,22 @@ export default function TopAssistsScreen() {
   const icon = <AssistsIcon className="section-title__icon"/>
   const [topAssists, setTopAssists] = useState({})
 
+  function useQuery() {
+    const { search } = useLocation();
+    return React.useMemo(() => new URLSearchParams(search), [search]);
+  }
+
+  const query = useQuery();
+
   useEffect(() => {
+    let year = query.get("year")
     firebaseDb.child('players').on('value', snapshot => {
       if(snapshot.val !== null) {
         let players = snapshot.val()
         let assistsList = []
         Object.keys(players).map(id => {
           let assist = players[id]
-          if(assist.assists > 0) {
+          if(assist[year] && assist[year].assists > 0) {
             assistsList.push(
               {
                 id: id,

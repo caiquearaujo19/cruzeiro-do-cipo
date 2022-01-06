@@ -10,11 +10,9 @@ export default function PlayersRanking({title, icon, list, seeMorePath}) {
   const [listPreview, setListPreview] = useState([])
 
   useEffect(() => {
-    if(list.length) {
-      if(title === "Artilheiros") {list.sort(orderListByGoals)}
-      else {list.sort(orderListByAssists)}
-      setListPreview(list.slice(0, 3))
-    }
+    if(title === "Artilheiros") {list.sort(orderListByGoals)}
+    else {list.sort(orderListByAssists)}
+    setListPreview(list.slice(0, 3))
   }, [list, title])
 
   const orderListByGoals = (a, b) => {

@@ -10,6 +10,7 @@ import './style.scss'
 
 export default function StatsScreen() {
 
+  const [year, setYear] = useState(new Date().getFullYear().toString())
   const [matches, setMatches] = useState({})
   const [numbers, setNumbers] = useState([])
   const [goalsCount, setGoalsCount] = useState([])
@@ -18,7 +19,7 @@ export default function StatsScreen() {
   const [assists, setAssists] = useState([])
 
   useEffect(() => {
-    firebaseDb.child('matches').on('value', snapshot => {
+    firebaseDb.child('matches').orderByChild("year").equalTo(year).on('value', snapshot => {
       if(snapshot.val !== null) {
         setMatches({
           ...snapshot.val()
@@ -32,17 +33,17 @@ export default function StatsScreen() {
         })
       }
     })
-  }, [])
+  }, [year])
 
   useEffect(() => {
+    let cipoGoals
+    let adversaryGoals
+    let wins = 0
+    let draws = 0
+    let loses = 0
+    let goalsScored = 0
+    let concededGoals = 0
     if(Object.keys(matches).length > 0) {
-      let cipoGoals
-      let adversaryGoals
-      let wins = 0
-      let draws = 0
-      let loses = 0
-      let goalsScored = 0
-      let concededGoals = 0
       Object.keys(matches).forEach(id => {
         cipoGoals = matches[id].away ? matches[id].awayTeam.goals : matches[id].homeTeam.goals
         adversaryGoals = matches[id].away ? matches[id].homeTeam.goals : matches[id].awayTeam.goals
@@ -52,51 +53,54 @@ export default function StatsScreen() {
         else if(cipoGoals === adversaryGoals) {draws++}
         else if(cipoGoals < adversaryGoals) {loses++}
       })
-      setNumbers([
-        {title: "Jogos", value: Object.keys(matches).length},
-        {title: "Vitórias", value: wins},
-        {title: "Empates", value: draws},
-        {title: "Derrotas", value: loses},
-      ])
-      setGoalsCount([
-        {title: "Gols feitos", value: goalsScored},
-        {title: "Gols sofridos", value: concededGoals}
-      ])
     }
+    
+    setNumbers([
+      {title: "Jogos", value: Object.keys(matches).length},
+      {title: "Vitórias", value: wins},
+      {title: "Empates", value: draws},
+      {title: "Derrotas", value: loses},
+    ])
+    setGoalsCount([
+      {title: "Gols feitos", value: goalsScored},
+      {title: "Gols sofridos", value: concededGoals}
+    ])
   }, [matches])
 
   useEffect(() => {
+    let scorersList = []
+    let assistsList = []
     if(Object.keys(players).length > 0) {
-      let scorersList = []
-      let assistsList = []
       Object.keys(players).forEach(id => {
         let player = {
           id: id,
           ...players[id]
         }
-        if(player.goals > 0) {scorersList.push(player)}
-        if(player.assists > 0) {assistsList.push(player)}
+        if(player[year]) {
+          if(player[year].goals > 0) {scorersList.push(player)}
+          if(player[year].assists > 0) {assistsList.push(player)}
+        }
       })
-      setScorers(scorersList)
-      setAssists(assistsList)
     }
+    setScorers(scorersList)
+    setAssists(assistsList)
   }, [players])
 
   return (
     <article className="stats-screen">
       <section className="stats-screen__container">
-        <TeamPhase numbers={numbers}/>
+        <TeamPhase numbers={numbers} changeYear={setYear}/>
         <GoalsCount goals={goalsCount}/>
         <PlayersRanking
           title="Artilheiros" 
           icon={<ScorersIcon className="section-title__icon"/>}
           list={scorers}
-          seeMorePath="/top-scorers"/>
+          seeMorePath={`/top-scorers?year=${year}`}/>
         <PlayersRanking
           title="Assistências"
           icon={<AssistsIcon className="section-title__icon"/>}
           list={assists}
-          seeMorePath="/top-assists"/>
+          seeMorePath={`/top-assists?year=${year}`}/>
         <MainTabs activeTab={2}/>
       </section>
     </article>

@@ -9,6 +9,23 @@
   color: white;
   padding-bottom: 20px;
 
+  &__year-select {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    background-color: transparent;
+    color: white;
+    outline: none;
+
+    & > option {
+      color: #333;
+      font-size: 18px;
+    }
+  }
+
   &__percentage {
     text-align: center;
     font-size: 70px;
