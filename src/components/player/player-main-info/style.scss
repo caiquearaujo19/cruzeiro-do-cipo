@@ -8,6 +8,23 @@
   align-items: center;
   color: white;
 
+  &__year-select {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    background-color: transparent;
+    color: white;
+    outline: none;
+
+    & > option {
+      color: #333;
+      font-size: 18px;
+    }
+  }
+
   &__name {
     font-size: 20px;
     font-weight: 500;

@@ -8,7 +8,7 @@ export default function MatchesList({matches}) {
     <ul className="matches-list">
       {Object.keys(matches).map(id => (
         <MatchesListItem key={id} matchId={id} match={matches[id]} />
-      ))}
+      )).reverse()}
     </ul>
   )
 }

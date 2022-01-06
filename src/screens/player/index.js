@@ -8,6 +8,7 @@ import './style.scss'
 
 export default function StatsScreen() {
 
+  const [year, setYear] = useState(new Date().getFullYear().toString())
   const params = useParams()
   const [player, setPlayer] = useState({})
 
@@ -23,8 +24,8 @@ export default function StatsScreen() {
   return (
     <article className="player-screen">
       <TopBar/>
-      <PlayerMainInfo player={player}/>
-      <Averages player={player}/>
+      <PlayerMainInfo player={player} changeYear={setYear}/>
+      <Averages player={player} year={year}/>
       <section className="player-screen__coming-soon">
         Em breve mais informações
       </section>

@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { useLocation } from "react-router-dom"
 import TopBar from '../../components/top-bar'
 import SectionTitle from '../../components/section-title'
 import {ReactComponent as ScorersIcon} from '../../assets/icons/scorers.svg'
@@ -12,14 +13,22 @@ export default function TopScorersScreen() {
   const icon = <ScorersIcon className="section-title__icon"/>
   const [topScorers, setTopScorers] = useState({})
 
+  function useQuery() {
+    const { search } = useLocation();
+    return React.useMemo(() => new URLSearchParams(search), [search]);
+  }
+
+  const query = useQuery();
+
   useEffect(() => {
+    let year = query.get("year")
     firebaseDb.child('players').on('value', snapshot => {
       if(snapshot.val !== null) {
         let players = snapshot.val()
         let scorersList = []
         Object.keys(players).map(id => {
           let scorer = players[id]
-          if(scorer.goals > 0) {
+          if(scorer[year] && scorer[year].goals > 0) {
             scorersList.push(
               {
                 id: id,
