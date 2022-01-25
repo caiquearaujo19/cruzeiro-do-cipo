@@ -26,7 +26,7 @@ export default function TopScorersScreen() {
       if(snapshot.val !== null) {
         let players = snapshot.val()
         let scorersList = []
-        Object.keys(players).map(id => {
+        Object.keys(players).forEach(id => {
           let scorer = players[id]
           if(scorer[year] && scorer[year].goals > 0) {
             scorersList.push(
@@ -41,7 +41,7 @@ export default function TopScorersScreen() {
         setTopScorers(scorersList)
       }
     })
-  }, [])
+  }, [query])
 
   const orderListByGoals = (a, b) => {
     if(a.goals < b.goals) {return 1}

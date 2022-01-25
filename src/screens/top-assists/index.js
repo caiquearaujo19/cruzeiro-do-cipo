@@ -25,7 +25,7 @@ export default function TopAssistsScreen() {
       if(snapshot.val !== null) {
         let players = snapshot.val()
         let assistsList = []
-        Object.keys(players).map(id => {
+        Object.keys(players).forEach(id => {
           let assist = players[id]
           if(assist[year] && assist[year].assists > 0) {
             assistsList.push(
@@ -40,7 +40,7 @@ export default function TopAssistsScreen() {
         setTopAssists(assistsList)
       }
     })
-  }, [])
+  }, [query])
 
   const orderListByAssists = (a, b) => {
     if(a.assists < b.assists) {return 1}

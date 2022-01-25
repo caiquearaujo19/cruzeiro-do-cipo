@@ -84,7 +84,7 @@ export default function StatsScreen() {
     }
     setScorers(scorersList)
     setAssists(assistsList)
-  }, [players])
+  }, [players, year])
 
   return (
     <article className="stats-screen">

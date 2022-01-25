@@ -1,0 +1,22 @@
+.line-up {
+    &__list {
+        list-style: none;
+        padding: 12px 20px;
+        margin: 0;
+
+        &__item {
+            display: flex;
+            align-items: center;
+
+            &__position {
+                width: 32px;
+                margin-right: 10px;
+                color: lightgrey;
+            }
+
+            &:not(:last-child) {
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
