@@ -9,19 +9,18 @@ import './style.scss'
 
 export default function TopScorersScreen() {
 
+  const query = useQuery();
   const title = "Artilheiros"
   const icon = <ScorersIcon className="section-title__icon"/>
   const [topScorers, setTopScorers] = useState({})
+  const [year, setYear] = useState(query.get("year"))
 
   function useQuery() {
     const { search } = useLocation();
     return React.useMemo(() => new URLSearchParams(search), [search]);
   }
 
-  const query = useQuery();
-
   useEffect(() => {
-    let year = query.get("year")
     firebaseDb.child('players').on('value', snapshot => {
       if(snapshot.val !== null) {
         let players = snapshot.val()
@@ -57,7 +56,7 @@ export default function TopScorersScreen() {
       </header>
       <ul className="top-scorers-screen__list">
         {Object.keys(topScorers).map(id => (
-          <PlayersRankingListItem key={id} item={topScorers[id]} context={title}/>
+          <PlayersRankingListItem key={id} year={year} item={topScorers[id]} context={title}/>
         ))}
       </ul>
     </article>

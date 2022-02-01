@@ -5,7 +5,7 @@ import SectionTitle from '../../section-title'
 import PlayersRankingListItem from './players-ranking-list-item'
 import './style.scss'
 
-export default function PlayersRanking({title, icon, list, seeMorePath}) {
+export default function PlayersRanking({year, title, icon, list, seeMorePath}) {
 
   const [listPreview, setListPreview] = useState([])
 
@@ -32,7 +32,7 @@ export default function PlayersRanking({title, icon, list, seeMorePath}) {
       <SectionTitle title={title} color="blue" icon={icon}/>
       <ul className="players-ranking__list">
         {listPreview.map((scorer, i) => (
-          <PlayersRankingListItem key={i} item={scorer} context={title}/>
+          <PlayersRankingListItem key={i} year={year} item={scorer} context={title}/>
         ))}
       </ul>
       <footer className="players-ranking__footer">

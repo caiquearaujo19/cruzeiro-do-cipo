@@ -92,11 +92,13 @@ export default function StatsScreen() {
         <TeamPhase numbers={numbers} changeYear={setYear}/>
         <GoalsCount goals={goalsCount}/>
         <PlayersRanking
+          year={year}
           title="Artilheiros" 
           icon={<ScorersIcon className="section-title__icon"/>}
           list={scorers}
           seeMorePath={`/top-scorers?year=${year}`}/>
         <PlayersRanking
+          year={year}
           title="Assistências"
           icon={<AssistsIcon className="section-title__icon"/>}
           list={assists}
