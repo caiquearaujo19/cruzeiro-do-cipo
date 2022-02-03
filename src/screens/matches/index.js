@@ -12,6 +12,13 @@ export default function MatchesScreen() {
   const [matches, setMatches] = useState({})
 
   useEffect(() => {
+    let savedyear = sessionStorage.getItem('year')
+    if(savedyear) {
+      setYear(savedyear)
+    }
+  }, [])
+
+  useEffect(() => {
     firebaseDb.child('matches').orderByChild("year").equalTo(year).on('value', snapshot => {
       if(snapshot.val !== null) {
         setMatches({

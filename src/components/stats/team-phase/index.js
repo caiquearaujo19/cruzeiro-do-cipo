@@ -10,6 +10,13 @@ export default function TeamPhase({numbers, changeYear}) {
   const [stats, setStats] = useState([])
 
   useEffect(() => {
+    let savedyear = sessionStorage.getItem('year')
+    if(savedyear) {
+      setYear(savedyear)
+    }
+  }, [])
+
+  useEffect(() => {
     setStats(numbers ?? [])
   }, [numbers])
 
@@ -38,6 +45,7 @@ export default function TeamPhase({numbers, changeYear}) {
 
   const yearChange = (event) => {
     setYear(event.target.value)
+    sessionStorage.setItem('year', event.target.value)
   }
 
   return (

@@ -9,11 +9,11 @@ import './style.scss'
 
 export default function TopScorersScreen() {
 
-  const query = useQuery();
+  const query = useQuery()
+  const year = query.get("year")
   const title = "Artilheiros"
   const icon = <ScorersIcon className="section-title__icon"/>
   const [topScorers, setTopScorers] = useState({})
-  const [year, setYear] = useState(query.get("year"))
 
   function useQuery() {
     const { search } = useLocation();
@@ -40,7 +40,7 @@ export default function TopScorersScreen() {
         setTopScorers(scorersList)
       }
     })
-  }, [query])
+  }, [query, year])
 
   const orderListByGoals = (a, b) => {
     if(a.goals < b.goals) {return 1}

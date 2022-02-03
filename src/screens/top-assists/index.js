@@ -8,11 +8,11 @@ import firebaseDb from '../../firebase'
 import './style.scss'
 
 export default function TopAssistsScreen() {
-  const query = useQuery();
+  const query = useQuery()
+  const year = query.get("year")
   const title = "Assistências"
   const icon = <AssistsIcon className="section-title__icon"/>
   const [topAssists, setTopAssists] = useState({})
-  const [year, setYear] = useState(query.get("year"))
 
   function useQuery() {
     const { search } = useLocation();
@@ -39,7 +39,7 @@ export default function TopAssistsScreen() {
         setTopAssists(assistsList)
       }
     })
-  }, [query])
+  }, [query, year])
 
   const orderListByAssists = (a, b) => {
     if(a.assists < b.assists) {return 1}

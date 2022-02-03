@@ -9,6 +9,13 @@ export default function PlayerMainInfo({player, changeYear}) {
   const [numbers, setNumbers] = useState([])
 
   useEffect(() => {
+    let savedyear = sessionStorage.getItem('year')
+    if(savedyear) {
+      setYear(savedyear)
+    }
+  }, [])
+
+  useEffect(() => {
     setNumbers([
       {
         value: player[year] ? player[year].matches : 0,
@@ -40,6 +47,7 @@ export default function PlayerMainInfo({player, changeYear}) {
 
   const yearChange = (event) => {
     setYear(event.target.value)
+    sessionStorage.setItem('year', event.target.value)
   }
 
   return (

@@ -7,6 +7,13 @@ export default function MatchCount({numbers, changeYear}) {
   const [stats, setStats] = useState([]);
 
   useEffect(() => {
+    let savedyear = sessionStorage.getItem('year')
+    if(savedyear) {
+      setYear(savedyear)
+    }
+  }, [])
+
+  useEffect(() => {
     setStats([
       {
         title: "Vitórias",
@@ -32,6 +39,7 @@ export default function MatchCount({numbers, changeYear}) {
 
   const yearChange = (event) => {
     setYear(event.target.value)
+    sessionStorage.setItem('year', event.target.value)
   }
 
   return (

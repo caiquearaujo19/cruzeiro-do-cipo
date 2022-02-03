@@ -10,7 +10,7 @@ export default function PlayersRankingListItem({year, item, context}) {
         <PlayerAvatar size={40} photo={item.photo}/>
         <div className="players-ranking-list-item__content__name">{item.name}</div>
         <div className="players-ranking-list-item__content__value">
-          {context === "Artilheiros" ? item[year].goals : item[year].assists}
+          { item[year] ? context === "Artilheiros" ? item[year].goals : item[year].assists : null }
         </div>
       </Link>
     </li>

@@ -13,6 +13,13 @@ export default function StatsScreen() {
   const [player, setPlayer] = useState({})
 
   useEffect(() => {
+    let savedyear = sessionStorage.getItem('year')
+    if(savedyear) {
+      setYear(savedyear)
+    }
+  }, [])
+
+  useEffect(() => {
     firebaseDb.child(`players/${params.id}`).once('value').then(snapshot => {
       if(snapshot.val() !== null) {
         setPlayer(snapshot.val())
