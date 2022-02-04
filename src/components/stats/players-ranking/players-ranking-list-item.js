@@ -13,11 +13,11 @@ export default function PlayersRankingListItem({year, item, context, ranking}) {
           context === "Goleiros" ?
             <div className="players-ranking-list-item__content__value">
               <span className='label'>JG:</span>
-              <span>{item[year].goalkeeper.matches}</span>
+              <span>{item[year] ? item[year].goalkeeper.matches : null}</span>
               <span className='label'>SG:</span>
-              <span>{item[year].goalkeeper.cleanSheets}</span>
+              <span>{item[year] ? item[year].goalkeeper.cleanSheets : null}</span>
               <span className='label'>GS:</span>
-              <span>{item[year].goalkeeper.goalsConceded}</span>
+              <span>{item[year] ? item[year].goalkeeper.goalsConceded : null}</span>
             </div>
           :
             <div className="players-ranking-list-item__content__value">
