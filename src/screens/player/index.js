@@ -5,6 +5,7 @@ import PlayerMainInfo from '../../components/player/player-main-info'
 import Averages from '../../components/player/averages'
 import firebaseDb from '../../firebase'
 import './style.scss'
+import Goalkeeper from '../../components/player/goalkeeper'
 
 export default function StatsScreen() {
 
@@ -33,6 +34,15 @@ export default function StatsScreen() {
       <TopBar/>
       <PlayerMainInfo player={player} changeYear={setYear}/>
       <Averages player={player} year={year}/>
+      {
+        player[year] && player[year].goalkeeper ?
+          <Goalkeeper
+            matches={player[year].goalkeeper.matches}
+            cleanSheets={player[year].goalkeeper.cleanSheets}
+            goalsConceded={player[year].goalkeeper.goalsConceded}
+          />
+        : null
+      }
       <section className="player-screen__coming-soon">
         Em breve mais informações
       </section>

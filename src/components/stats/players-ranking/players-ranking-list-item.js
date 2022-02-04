@@ -3,15 +3,27 @@ import {Link} from 'react-router-dom'
 import PlayerAvatar from '../../player-avatar'
 import './players-ranking-list-item.scss'
 
-export default function PlayersRankingListItem({year, item, context}) {
+export default function PlayersRankingListItem({year, item, context, ranking}) {
   return (
     <li className="players-ranking-list-item">
       <Link className="players-ranking-list-item__content" to={`/player/${item.id}`}>
-        <PlayerAvatar size={40} photo={item.photo}/>
+        <PlayerAvatar size={40} photo={item.photo} ranking={ranking}/>
         <div className="players-ranking-list-item__content__name">{item.name}</div>
-        <div className="players-ranking-list-item__content__value">
-          { item[year] ? context === "Artilheiros" ? item[year].goals : item[year].assists : null }
-        </div>
+        {
+          context === "Goleiros" ?
+            <div className="players-ranking-list-item__content__value">
+              <span className='label'>JG:</span>
+              <span>{item[year].goalkeeper.matches}</span>
+              <span className='label'>SG:</span>
+              <span>{item[year].goalkeeper.cleanSheets}</span>
+              <span className='label'>GS:</span>
+              <span>{item[year].goalkeeper.goalsConceded}</span>
+            </div>
+          :
+            <div className="players-ranking-list-item__content__value">
+              { item[year] ?context === "Artilheiros" ? item[year].goals : item[year].assists : null }
+            </div>
+        }
       </Link>
     </li>
   )

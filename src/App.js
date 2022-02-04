@@ -10,6 +10,7 @@ import MatchScreen from './screens/match'
 import PlayerScreen from './screens/player'
 import TopScorersScreen from './screens/top-scorers'
 import TopAssistsScreen from './screens/top-assists'
+import TopGoalkeepersScreen from './screens/top-goalkeepers'
 import RegisterScreen from './screens/register'
 
 function App() {
@@ -54,6 +55,10 @@ function App() {
           <Route
             path="/top-assists"
             component={TopAssistsScreen}
+          />
+          <Route
+            path="/goalkeepers"
+            component={TopGoalkeepersScreen}
           />
           <Route
             path="/register"

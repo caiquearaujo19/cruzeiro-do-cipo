@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom'
 import ArrowRightIcon from '../../../assets/icons/right.svg'
 import SectionTitle from '../../section-title'
 import PlayersRankingListItem from './players-ranking-list-item'
+import {
+  orderListByGoals,
+  orderListByAssists,
+  orderListByCleanSheets
+} from '../../../utils/js-utils/sorters'
 import './style.scss'
 
 export default function PlayersRanking({year, title, icon, list, seeMorePath}) {
@@ -10,29 +15,28 @@ export default function PlayersRanking({year, title, icon, list, seeMorePath}) {
   const [listPreview, setListPreview] = useState([])
 
   useEffect(() => {
-    if(title === "Artilheiros") {list.sort(orderListByGoals)}
-    else {list.sort(orderListByAssists)}
+    switch(title) {
+      case "Artilheiros":
+        list.sort(orderListByGoals)
+        break
+      case "Assistências":
+        list.sort(orderListByAssists)
+        break
+      case "Goleiros":
+        list.sort(orderListByCleanSheets)
+        break
+      default:
+        break
+    }
     setListPreview(list.slice(0, 3))
   }, [list, title])
-
-  const orderListByGoals = (a, b) => {
-    if(a.goals < b.goals) {return 1}
-    if(b.goals < a.goals) {return -1}
-    return 0
-  }
-
-  const orderListByAssists = (a, b) => {
-    if(a.assists < b.assists) {return 1}
-    if(b.assists < a.assists) {return -1}
-    return 0
-  }
 
   return (
     <article className="players-ranking">
       <SectionTitle title={title} color="blue" icon={icon}/>
       <ul className="players-ranking__list">
-        {listPreview.map((scorer, i) => (
-          <PlayersRankingListItem key={i} year={year} item={scorer} context={title}/>
+        {listPreview.map((item, i) => (
+          <PlayersRankingListItem key={i} year={year} item={item} context={title} ranking={i + 1}/>
         ))}
       </ul>
       <footer className="players-ranking__footer">

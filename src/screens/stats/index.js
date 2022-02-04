@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {ReactComponent as ScorersIcon} from '../../assets/icons/scorers.svg'
 import {ReactComponent as AssistsIcon} from '../../assets/icons/assists.svg'
+import {ReactComponent as GoalkeepersIcon} from '../../assets/icons/goalkeepers.svg'
 import TeamPhase from '../../components/stats/team-phase'
 import GoalsCount from '../../components/stats/goals-count'
 import Loader from '../../components/loader'
@@ -18,6 +19,7 @@ export default function StatsScreen() {
   const [players, setPlayers] = useState({})
   const [scorers, setScorers] = useState([])
   const [assists, setAssists] = useState([])
+  const [goalkeepers, setGoalkeepers] = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -79,6 +81,7 @@ export default function StatsScreen() {
   useEffect(() => {
     let scorersList = []
     let assistsList = []
+    let goalkeepersList = []
     if(Object.keys(players).length > 0) {
       Object.keys(players).forEach(id => {
         let player = {
@@ -88,11 +91,13 @@ export default function StatsScreen() {
         if(player[year]) {
           if(player[year].goals > 0) {scorersList.push(player)}
           if(player[year].assists > 0) {assistsList.push(player)}
+          if(player[year].goalkeeper) {goalkeepersList.push(player)}
         }
       })
     }
     setScorers(scorersList)
     setAssists(assistsList)
+    setGoalkeepers(goalkeepersList)
   }, [players, year])
 
   useEffect(() => {
@@ -125,6 +130,12 @@ export default function StatsScreen() {
               icon={<AssistsIcon className="section-title__icon"/>}
               list={assists}
               seeMorePath={`/top-assists?year=${year}`}/>
+            <PlayersRanking
+              year={year}
+              title="Goleiros"
+              icon={<GoalkeepersIcon className="section-title__icon"/>}
+              list={goalkeepers}
+              seeMorePath={`/goalkeepers?year=${year}`}/>
           </div>
         }
         <MainTabs activeTab={2}/>

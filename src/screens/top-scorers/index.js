@@ -5,6 +5,7 @@ import SectionTitle from '../../components/section-title'
 import {ReactComponent as ScorersIcon} from '../../assets/icons/scorers.svg'
 import PlayersRankingListItem from '../../components/stats/players-ranking/players-ranking-list-item'
 import firebaseDb from '../../firebase'
+import {orderListByGoals} from '../../utils/js-utils/sorters'
 import './style.scss'
 
 export default function TopScorersScreen() {
@@ -41,12 +42,6 @@ export default function TopScorersScreen() {
       }
     })
   }, [query, year])
-
-  const orderListByGoals = (a, b) => {
-    if(a.goals < b.goals) {return 1}
-    if(b.goals < a.goals) {return -1}
-    return 0
-  }
 
   return (
     <article className="top-scorers-screen">

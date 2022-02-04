@@ -21,6 +21,18 @@
             font-size: 20px;
             font-weight: bold;
             color: $main-color;
+            display: flex;
+            align-items: center;
+
+            & > .label {
+                font-size: 12px;
+                color: $gray;
+                margin-right: 5px;
+            }
+
+            & > span:not(.label):not(:last-child) {
+                margin-right: 10px;
+            }
         }
     }
 }
