@@ -3,6 +3,7 @@ import {ReactComponent as ScorersIcon} from '../../assets/icons/scorers.svg'
 import {ReactComponent as AssistsIcon} from '../../assets/icons/assists.svg'
 import TeamPhase from '../../components/stats/team-phase'
 import GoalsCount from '../../components/stats/goals-count'
+import Loader from '../../components/loader'
 import PlayersRanking from '../../components/stats/players-ranking'
 import MainTabs from '../../components/main-tabs'
 import firebaseDb from '../../firebase'
@@ -17,6 +18,7 @@ export default function StatsScreen() {
   const [players, setPlayers] = useState({})
   const [scorers, setScorers] = useState([])
   const [assists, setAssists] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     let savedyear = sessionStorage.getItem('year')
@@ -93,23 +95,38 @@ export default function StatsScreen() {
     setAssists(assistsList)
   }, [players, year])
 
+  useEffect(() => {
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 1000)
+  }, [])
+
   return (
     <article className="stats-screen">
       <section className="stats-screen__container">
         <TeamPhase numbers={numbers} changeYear={setYear}/>
         <GoalsCount goals={goalsCount}/>
-        <PlayersRanking
-          year={year}
-          title="Artilheiros" 
-          icon={<ScorersIcon className="section-title__icon"/>}
-          list={scorers}
-          seeMorePath={`/top-scorers?year=${year}`}/>
-        <PlayersRanking
-          year={year}
-          title="Assistências"
-          icon={<AssistsIcon className="section-title__icon"/>}
-          list={assists}
-          seeMorePath={`/top-assists?year=${year}`}/>
+        { loading ?
+          <div className='stats-screen__container__loader-container'>
+            <Loader />
+          </div>
+        :
+        <div className='stats-screen__container__rankings'>
+            <PlayersRanking
+              year={year}
+              title="Artilheiros" 
+              icon={<ScorersIcon className="section-title__icon"/>}
+              list={scorers}
+              seeMorePath={`/top-scorers?year=${year}`}/>
+            <PlayersRanking
+              year={year}
+              title="Assistências"
+              icon={<AssistsIcon className="section-title__icon"/>}
+              list={assists}
+              seeMorePath={`/top-assists?year=${year}`}/>
+          </div>
+        }
         <MainTabs activeTab={2}/>
       </section>
     </article>

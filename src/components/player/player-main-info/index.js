@@ -56,7 +56,9 @@ export default function PlayerMainInfo({player, changeYear}) {
         { player["2021"] ? <option value="2021">2021</option> : null}
         <option value="2022">2022</option>
       </select>
-      <PlayerAvatar photo={player.photo} size={70}/>
+      <div className='player-main-info__avatar'>
+        <PlayerAvatar photo={player.photo} size={70}/>
+      </div>
       <div className="player-main-info__name">{player.name}</div>
       <div className="player-main-info__numbers">
         {numbers.map((item, i) => (renderNumber(item, i)))}

@@ -1,4 +1,5 @@
-@import '../../../utils/sass-variables.scss';
+@import '../../../utils/sass-utils/variables.scss';
+@import '../../../utils/sass-utils/mixins.scss';
 
 .goals-count {
   background-color: $dark-main-color;
@@ -12,6 +13,7 @@
   &__numbers {
     display: flex;
     justify-content: center;
+    @include entryAnimation(0.4s);
 
     &__item {
       width: 95px;

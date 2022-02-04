@@ -48,12 +48,12 @@ export default function TopAssistsScreen() {
   }
 
   return (
-    <article className="top-scorers-screen">
+    <article className="top-assists-screen">
       <TopBar />
-      <header className="top-scorers-screen__header">
+      <header className="top-assists-screen__header">
         <SectionTitle title={title} color="blue" icon={icon}/>
       </header>
-      <ul className="top-scorers-screen__list">
+      <ul className="top-assists-screen__list">
         {Object.keys(topAssists).map(id => (
           <PlayersRankingListItem key={id} year={year} item={topAssists[id]} context={title}/>
         ))}

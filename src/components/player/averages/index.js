@@ -18,11 +18,11 @@ export default function Averages({player, year}) {
 
     return (
         <article className="averages">
-        <SectionTitle title="Médias"/>
-        <div className="averages__numbers">
-            {renderItem(goalAverage, "Gols por jogo")}
-            {renderItem(assitAverage, "Assist. por jogo")}
-        </div>
+            <SectionTitle title="Médias"/>
+            <div className="averages__numbers">
+                {renderItem(goalAverage, "Gols por jogo")}
+                {renderItem(assitAverage, "Assist. por jogo")}
+            </div>
         </article>
     )
 }

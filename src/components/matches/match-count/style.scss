@@ -1,4 +1,5 @@
-@import "../../../utils/sass-variables.scss";
+@import '../../../utils/sass-utils/variables.scss';
+@import '../../../utils/sass-utils/mixins.scss';
 
 .match-count {
   height: 100px;
@@ -16,6 +17,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    @include entryAnimation();
 
     &__year-select {
       font-size: 30px;
@@ -43,6 +45,7 @@
   &__stats {
     display: flex;
     align-items: center;
+    @include entryAnimation(0.2s);
 
     &__item {
       &:not(:last-child) {

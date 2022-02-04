@@ -1,8 +1,11 @@
+@import '../../../utils/sass-utils/mixins.scss';
+
 .substitutions {
     &__list {
         list-style: none;
         padding: 12px 20px;
         margin: 0;
+        @include entryAnimation(1s);
 
         &__item {
             display: flex;

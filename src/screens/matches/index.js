@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import MatchCount from '../../components/matches/match-count'
+import Loader from '../../components/loader'
 import MatchesList from '../../components/matches/matches-list'
 import MainTabs from '../../components/main-tabs'
 import firebaseDb from '../../firebase'
@@ -10,6 +11,7 @@ export default function MatchesScreen() {
   const [year, setYear] = useState(new Date().getFullYear().toString())
   const [numbers, setNumbers] = useState({})
   const [matches, setMatches] = useState({})
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     let savedyear = sessionStorage.getItem('year')
@@ -27,6 +29,15 @@ export default function MatchesScreen() {
       }
     })
   }, [year])
+
+  useEffect(() => {
+    setLoading(true)
+    if(matches) {
+      setTimeout(() => {
+        setLoading(false)
+      }, 1000)
+    }
+  }, [matches])
 
   useEffect(() => {
     let cipoGoals
@@ -54,7 +65,15 @@ export default function MatchesScreen() {
   return (
     <article className="matches-screen">
       <MatchCount numbers={numbers} changeYear={setYear}/>
-      <MatchesList matches={matches}/>
+      { loading ?
+        <div className='matches-screen__loader-container'>
+          <Loader />
+        </div>
+      :
+      <div className='matches-screen__matches-list'>
+        <MatchesList matches={matches}/>
+      </div>
+      }
       <MainTabs activeTab={1}/>
     </article>
   )

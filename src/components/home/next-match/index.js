@@ -13,7 +13,7 @@ export default function NextMatch({data, loading}) {
         <div className="next-match__emblems__away">{data.adversary ? <Emblem shape={!data.away ? data.adversary.emblemShape : undefined}/>: null}</div>
       </div>
       <div className="next-match__info">
-      <div className="next-match__info__adversary">{loading ? 'Carregando...' : data.adversary ? data.adversary.name : null}</div>
+        <div className="next-match__info__adversary">{loading ? 'Carregando...' : data.adversary ? data.adversary.name : null}</div>
         {loading ? null : 
           <div className="next-match__info__place-and-date">
             <div className="next-match__info__place-and-date__place">{data.away ? 'Fora de casa' : 'Em casa'}</div>

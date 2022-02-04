@@ -1,4 +1,5 @@
-@import '../../../utils/sass-variables.scss';
+@import '../../../utils/sass-utils/variables.scss';
+@import '../../../utils/sass-utils/mixins.scss';
 
 .team-phase {
   background-color: $main-color;
@@ -32,11 +33,13 @@
     font-size: 70px;
     font-weight: bold;
     margin-bottom: 25px;
+    @include entryAnimation();
   }
 
   &__numbers {
     display: flex;
     justify-content: center;
+    @include entryAnimation(0.2s);
 
     &__item {
       text-align: center;
