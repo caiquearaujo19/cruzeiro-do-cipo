@@ -1,20 +1,14 @@
 import React, {useState, useEffect} from 'react'
+import SectionTitle from '../../section-title'
+import { useAppStore } from '../../../AppStore'
 import './style.scss'
 
-import SectionTitle from '../../section-title'
+export default function TeamPhase({numbers}) {
 
-export default function TeamPhase({numbers, changeYear}) {
-
-  const [year, setYear] = useState(new Date().getFullYear().toString())
   const [percentage, setPercentage] = useState(0)
   const [stats, setStats] = useState([])
 
-  useEffect(() => {
-    let savedyear = sessionStorage.getItem('year')
-    if(savedyear) {
-      setYear(savedyear)
-    }
-  }, [])
+  const {year, yearList, changeYear} = useAppStore()
 
   useEffect(() => {
     setStats(numbers ?? [])
@@ -39,21 +33,11 @@ export default function TeamPhase({numbers, changeYear}) {
     )
   }
 
-  useEffect(() => {
-    changeYear(year)
-  }, [year, changeYear])
-
-  const yearChange = (event) => {
-    setYear(event.target.value)
-    sessionStorage.setItem('year', event.target.value)
-  }
-
   return (
     <article className="team-phase">
       <SectionTitle title="Aproveitamento"/>
-      <select className="team-phase__year-select" value={year} onChange={yearChange}>
-        <option value="2021">2021</option>
-        <option value="2022">2022</option>
+      <select className="team-phase__year-select" value={year} onChange={(e) => changeYear(e.target.value)}>
+        {yearList.map(y => <option key={y} value={y}>{y}</option>)}
       </select>
       <div className="team-phase__percentage">{percentage}%</div>
       <div className="team-phase__numbers">

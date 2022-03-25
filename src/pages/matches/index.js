@@ -4,21 +4,16 @@ import Loader from '../../components/loader'
 import MatchesList from '../../components/matches/matches-list'
 import MainTabs from '../../components/main-tabs'
 import firebaseDb from '../../firebase'
+import { useAppStore } from '../../AppStore'
 import './style.scss'
 
 export default function MatchesScreen() {
 
-  const [year, setYear] = useState(new Date().getFullYear().toString())
   const [numbers, setNumbers] = useState({})
   const [matches, setMatches] = useState({})
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    let savedyear = sessionStorage.getItem('year')
-    if(savedyear) {
-      setYear(savedyear)
-    }
-  }, [])
+  const {year} = useAppStore()
 
   useEffect(() => {
     firebaseDb.child('matches').orderByChild("year").equalTo(year).on('value', snapshot => {
@@ -64,7 +59,7 @@ export default function MatchesScreen() {
 
   return (
     <article className="matches-screen">
-      <MatchCount numbers={numbers} changeYear={setYear}/>
+      <MatchCount numbers={numbers}/>
       { loading ?
         <div className='matches-screen__loader-container'>
           <Loader />

@@ -1,25 +1,20 @@
 import React, {useState, useEffect} from 'react'
-import { useLocation } from "react-router-dom"
 import TopBar from '../../components/top-bar'
 import SectionTitle from '../../components/section-title'
 import {ReactComponent as ScorersIcon} from '../../assets/icons/scorers.svg'
 import PlayersRankingListItem from '../../components/stats/players-ranking/players-ranking-list-item'
 import firebaseDb from '../../firebase'
 import {orderListByGoals} from '../../utils/js-utils/sorters'
+import {useAppStore} from '../../AppStore'
 import './style.scss'
 
 export default function TopScorersScreen() {
 
-  const query = useQuery()
-  const year = query.get("year")
   const title = "Artilheiros"
   const icon = <ScorersIcon className="section-title__icon"/>
   const [topScorers, setTopScorers] = useState({})
 
-  function useQuery() {
-    const { search } = useLocation();
-    return React.useMemo(() => new URLSearchParams(search), [search]);
-  }
+  const {year} = useAppStore()
 
   useEffect(() => {
     firebaseDb.child('players').on('value', snapshot => {
@@ -37,11 +32,11 @@ export default function TopScorersScreen() {
             )
           }
         })
-        scorersList.sort(orderListByGoals)
+        scorersList.sort(orderListByGoals(year))
         setTopScorers(scorersList)
       }
     })
-  }, [query, year])
+  }, [year])
 
   return (
     <article className="top-scorers-screen">
@@ -51,7 +46,7 @@ export default function TopScorersScreen() {
       </header>
       <ul className="top-scorers-screen__list">
         {Object.keys(topScorers).map(id => (
-          <PlayersRankingListItem key={id} year={year} item={topScorers[id]} context={title}/>
+          <PlayersRankingListItem key={id} item={topScorers[id]} context={title}/>
         ))}
       </ul>
     </article>

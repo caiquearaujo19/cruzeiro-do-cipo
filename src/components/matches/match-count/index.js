@@ -1,60 +1,45 @@
 import React, { useEffect, useState } from 'react'
+import { useAppStore } from '../../../AppStore'
 import './style.scss'
 
-export default function MatchCount({numbers, changeYear}) {
+export default function MatchCount({numbers}) {
 
-  const [year, setYear] = useState(new Date().getFullYear().toString())
-  const [stats, setStats] = useState([]);
+  const [stats, setStats] = useState([])
 
-  useEffect(() => {
-    let savedyear = sessionStorage.getItem('year')
-    if(savedyear) {
-      setYear(savedyear)
-    }
-  }, [])
+  const {year, yearList, changeYear} = useAppStore()
 
   useEffect(() => {
     setStats([
       {
         title: "Vitórias",
         number: numbers.wins ?? 0,
-        color: '#219653'
+        color: ['#219653', '#37fa8a']
       },
       {
         title: "Empates",
         number: numbers.draws ?? 0,
-        color: '#828282'
+        color: ['#828282', '#dbdbdb']
       },
       {
         title: "Derrotas",
         number: numbers.loses ?? 0,
-        color: '#EB5757'
+        color: ['#b54343', '#ff8080']
       },
     ])
   }, [numbers])
 
-  useEffect(() => {
-    changeYear(year)
-  }, [year, changeYear])
-
-  const yearChange = (event) => {
-    setYear(event.target.value)
-    sessionStorage.setItem('year', event.target.value)
-  }
-
   return (
     <section className="match-count">
       <div className='match-count__left'>
-        <select className="match-count__left__year-select" value={year} onChange={yearChange}>
-          <option value="2021">2021</option>
-          <option value="2022">2022</option>
+        <select className="match-count__left__year-select" value={year} onChange={(e) => changeYear(e.target.value)}>
+          {yearList.map(y => <option key={y} value={y}>{y}</option>)}
         </select>
         <div className="match-count__left__matches">{numbers.matches ?? 0} jogos no ano</div>
       </div>
       <div className="match-count__stats">
         {stats.map((stat, i) => (
           <div key={i} className="match-count__stats__item">
-            <div className="match-count__stats__item__number" style={{backgroundColor: stat.color}}>
+            <div className="match-count__stats__item__number" style={{background: `linear-gradient(120deg, ${stat.color[0]} 0%, ${stat.color[1]} 100%)`}}>
               {stat.number}
             </div>
             <div className="match-count__stats__item__title">{stat.title}</div>

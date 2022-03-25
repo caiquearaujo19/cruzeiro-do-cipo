@@ -1,25 +1,20 @@
 import React, {useState, useEffect} from 'react'
-import { useLocation } from "react-router-dom"
 import TopBar from '../../components/top-bar'
 import SectionTitle from '../../components/section-title'
 import {ReactComponent as GoalkeepersIcon} from '../../assets/icons/goalkeepers.svg'
 import PlayersRankingListItem from '../../components/stats/players-ranking/players-ranking-list-item'
 import firebaseDb from '../../firebase'
 import {orderListByCleanSheets} from '../../utils/js-utils/sorters'
+import {useAppStore} from '../../AppStore'
 import './style.scss'
 
 export default function TopGoalkeepersScreen() {
 
-  const query = useQuery()
-  const year = query.get("year")
   const title = "Goleiros"
   const icon = <GoalkeepersIcon className="section-title__icon"/>
   const [topGoalkeepers, setTopGoalkeepers] = useState({})
 
-  function useQuery() {
-    const { search } = useLocation();
-    return React.useMemo(() => new URLSearchParams(search), [search]);
-  }
+  const {year} = useAppStore()
 
   useEffect(() => {
     firebaseDb.child('players').on('value', snapshot => {
@@ -37,11 +32,11 @@ export default function TopGoalkeepersScreen() {
             )
           }
         })
-        goalkeepersList.sort(orderListByCleanSheets)
+        goalkeepersList.sort(orderListByCleanSheets(year))
         setTopGoalkeepers(goalkeepersList)
       }
     })
-  }, [query, year])
+  }, [year])
 
   return (
     <article className="top-goalkeepers-screen">
@@ -51,7 +46,7 @@ export default function TopGoalkeepersScreen() {
       </header>
       <ul className="top-goalkeepers-screen__list">
         {Object.keys(topGoalkeepers).map(id => (
-          <PlayersRankingListItem key={id} year={year} item={topGoalkeepers[id]} context={title}/>
+          <PlayersRankingListItem key={id} item={topGoalkeepers[id]} context={title}/>
         ))}
       </ul>
     </article>

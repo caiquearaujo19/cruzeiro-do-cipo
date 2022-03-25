@@ -1,19 +1,13 @@
 import React, {useState, useEffect} from 'react'
+import PlayerAvatar from '../../player-avatar'
+import { useAppStore } from '../../../AppStore'
 import './style.scss'
 
-import PlayerAvatar from '../../player-avatar'
+export default function PlayerMainInfo({player}) {
 
-export default function PlayerMainInfo({player, changeYear}) {
-
-  const [year, setYear] = useState(new Date().getFullYear().toString())
   const [numbers, setNumbers] = useState([])
 
-  useEffect(() => {
-    let savedyear = sessionStorage.getItem('year')
-    if(savedyear) {
-      setYear(savedyear)
-    }
-  }, [])
+  const {year, yearList, changeYear} = useAppStore()
 
   useEffect(() => {
     setNumbers([
@@ -41,20 +35,10 @@ export default function PlayerMainInfo({player, changeYear}) {
     )
   }
 
-  useEffect(() => {
-    changeYear(year)
-  }, [year, changeYear])
-
-  const yearChange = (event) => {
-    setYear(event.target.value)
-    sessionStorage.setItem('year', event.target.value)
-  }
-
   return (
     <section className="player-main-info">
-      <select className="player-main-info__year-select" value={year} onChange={yearChange}>
-        { player["2021"] ? <option value="2021">2021</option> : null}
-        <option value="2022">2022</option>
+      <select className="player-main-info__year-select" value={year} onChange={(e) => changeYear(e.target.value)}>
+        {yearList.map(y => player[y] ? <option key={y} value={y}>{y}</option> : null)}
       </select>
       <div className='player-main-info__avatar'>
         <PlayerAvatar photo={player.photo} size={70}/>

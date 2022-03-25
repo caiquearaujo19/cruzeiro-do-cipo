@@ -1,8 +1,11 @@
 import React from 'react'
+import { useAppStore } from '../../../AppStore'
 import SectionTitle from '../../section-title'
 import './style.scss'
 
-export default function Averages({player, year}) {
+export default function Averages({player}) {
+
+    const {year} = useAppStore()
 
     const goalAverage = player[year] ? (player[year].goals / player[year].matches).toFixed(2): 0
     const assitAverage = player[year] ? (player[year].assists / player[year].matches).toFixed(2) : 0

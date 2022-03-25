@@ -2,16 +2,16 @@ import React from 'react'
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom"
 import './App.scss'
 
-import HomeScreen from './screens/home'
-import MatchesScreen from './screens/matches'
-import StatsScreen from './screens/stats'
-import ReportScreen from './screens/report'
-import MatchScreen from './screens/match'
-import PlayerScreen from './screens/player'
-import TopScorersScreen from './screens/top-scorers'
-import TopAssistsScreen from './screens/top-assists'
-import TopGoalkeepersScreen from './screens/top-goalkeepers'
-import RegisterScreen from './screens/register'
+import HomeScreen from './pages/home'
+import MatchesScreen from './pages/matches'
+import StatsScreen from './pages/stats'
+import ReportScreen from './pages/report'
+import MatchScreen from './pages/match'
+import PlayerScreen from './pages/player'
+import TopScorersScreen from './pages/top-scorers'
+import TopAssistsScreen from './pages/top-assists'
+import TopGoalkeepersScreen from './pages/top-goalkeepers'
+import RegisterScreen from './pages/register'
 
 function App() {
   return (

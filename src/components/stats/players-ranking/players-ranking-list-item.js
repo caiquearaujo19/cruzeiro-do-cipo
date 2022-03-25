@@ -1,9 +1,13 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import { useAppStore } from '../../../AppStore'
 import PlayerAvatar from '../../player-avatar'
 import './players-ranking-list-item.scss'
 
-export default function PlayersRankingListItem({year, item, context, ranking}) {
+export default function PlayersRankingListItem({item, context, ranking}) {
+
+  const {year} = useAppStore()
+
   return (
     <li className="players-ranking-list-item">
       <Link className="players-ranking-list-item__content" to={`/player/${item.id}`}>

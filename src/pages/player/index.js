@@ -4,21 +4,16 @@ import { useParams } from "react-router-dom"
 import PlayerMainInfo from '../../components/player/player-main-info'
 import Averages from '../../components/player/averages'
 import firebaseDb from '../../firebase'
-import './style.scss'
+import { useAppStore } from '../../AppStore'
 import Goalkeeper from '../../components/player/goalkeeper'
+import './style.scss'
 
 export default function StatsScreen() {
 
-  const [year, setYear] = useState(new Date().getFullYear().toString())
   const params = useParams()
   const [player, setPlayer] = useState({})
 
-  useEffect(() => {
-    let savedyear = sessionStorage.getItem('year')
-    if(savedyear) {
-      setYear(savedyear)
-    }
-  }, [])
+  const {year} = useAppStore()
 
   useEffect(() => {
     firebaseDb.child(`players/${params.id}`).once('value').then(snapshot => {
@@ -32,8 +27,8 @@ export default function StatsScreen() {
   return (
     <article className="player-screen">
       <TopBar/>
-      <PlayerMainInfo player={player} changeYear={setYear}/>
-      <Averages player={player} year={year}/>
+      <PlayerMainInfo player={player}/>
+      <Averages player={player}/>
       {
         player[year] && player[year].goalkeeper ?
           <Goalkeeper

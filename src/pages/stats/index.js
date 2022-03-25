@@ -8,11 +8,11 @@ import Loader from '../../components/loader'
 import PlayersRanking from '../../components/stats/players-ranking'
 import MainTabs from '../../components/main-tabs'
 import firebaseDb from '../../firebase'
+import { useAppStore } from '../../AppStore'
 import './style.scss'
 
 export default function StatsScreen() {
 
-  const [year, setYear] = useState(new Date().getFullYear().toString())
   const [matches, setMatches] = useState({})
   const [numbers, setNumbers] = useState([])
   const [goalsCount, setGoalsCount] = useState([])
@@ -22,12 +22,7 @@ export default function StatsScreen() {
   const [goalkeepers, setGoalkeepers] = useState([])
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    let savedyear = sessionStorage.getItem('year')
-    if(savedyear) {
-      setYear(savedyear)
-    }
-  }, [])
+  const {year} = useAppStore()
 
   useEffect(() => {
     firebaseDb.child('matches').orderByChild("year").equalTo(year).on('value', snapshot => {
@@ -110,7 +105,7 @@ export default function StatsScreen() {
   return (
     <article className="stats-screen">
       <section className="stats-screen__container">
-        <TeamPhase numbers={numbers} changeYear={setYear}/>
+        <TeamPhase numbers={numbers}/>
         <GoalsCount goals={goalsCount}/>
         { loading ?
           <div className='stats-screen__container__loader-container'>
@@ -119,23 +114,20 @@ export default function StatsScreen() {
         :
         <div className='stats-screen__container__rankings'>
             <PlayersRanking
-              year={year}
               title="Artilheiros" 
               icon={<ScorersIcon className="section-title__icon"/>}
               list={scorers}
-              seeMorePath={`/top-scorers?year=${year}`}/>
+              seeMorePath="/top-scorers"/>
             <PlayersRanking
-              year={year}
               title="Assistências"
               icon={<AssistsIcon className="section-title__icon"/>}
               list={assists}
-              seeMorePath={`/top-assists?year=${year}`}/>
+              seeMorePath="/top-assists"/>
             <PlayersRanking
-              year={year}
               title="Goleiros"
               icon={<GoalkeepersIcon className="section-title__icon"/>}
               list={goalkeepers}
-              seeMorePath={`/goalkeepers?year=${year}`}/>
+              seeMorePath="/goalkeepers"/>
           </div>
         }
         <MainTabs activeTab={2}/>
