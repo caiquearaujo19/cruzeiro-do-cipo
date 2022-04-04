@@ -32,9 +32,7 @@ export default function MatchesScreen() {
         setLoading(false)
       }, 1000)
     }
-  }, [matches])
 
-  useEffect(() => {
     let cipoGoals
     let adversaryGoals
     let wins = 0
