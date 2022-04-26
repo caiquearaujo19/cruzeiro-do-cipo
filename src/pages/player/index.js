@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react'
+import React, {useState, useEffect} from 'react'
 import TopBar from '../../components/top-bar'
 import { useParams } from "react-router-dom"
 import PlayerMainInfo from '../../components/player/player-main-info'
@@ -14,23 +14,7 @@ export default function StatsScreen() {
   const params = useParams()
   const [player, setPlayer] = useState({})
   const [matches, setMatches] = useState({})
-  const [playerMatches, setPlayerMatches] = useState({})
-
   const {year} = useAppStore()
-
-  const playedAsAStarter = useCallback((match) => {
-    return match.lineUp.includes(player.name)
-  }, [player])
-
-  const playedAsAReserve = useCallback((match) => {
-    let played = false
-    match.substitutions.forEach(subs => {
-      if(subs.in === player.name) {
-        played = true
-      }
-    })
-    return played
-  }, [player])
 
   useEffect(() => {
     firebaseDb.child(`players/${params.id}`).once('value').then(snapshot => {
@@ -50,13 +34,6 @@ export default function StatsScreen() {
     })
   }, [year])
 
-  useEffect(() => {
-    if(matches) {
-      let matchesPlayed = Object.values(matches).filter(match => playedAsAStarter(match) || playedAsAReserve(match))
-      setPlayerMatches(matchesPlayed)
-    }
-  }, [matches, playedAsAStarter, playedAsAReserve])
-
   return (
     <article className="player-screen">
       <TopBar/>
@@ -71,7 +48,7 @@ export default function StatsScreen() {
           />
         : null
       }
-      <PlayerMatches matches={playerMatches} player={player}/>
+      <PlayerMatches matches={matches} player={player}/>
     </article>
   )
 }
