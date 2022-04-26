@@ -1,8 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import './style.scss'
-
 import Emblem from '../../emblem'
+import './style.scss'
 
 export default function MatchesListItem({matchId, match}) {
 

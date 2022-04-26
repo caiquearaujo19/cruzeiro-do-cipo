@@ -11,9 +11,9 @@ export default function Substitutions({list}) {
             <ul className="substitutions__list">
                 {list && list.length ? list.map((sub, i) => (
                     <li className="substitutions__list__item" key={i}>
-                        <div className="substitutions__list__item__icon">{<InIcon />}</div>{sub.in}
+                        <div className="substitutions__list__item__icon"><InIcon /></div>{sub.in}
                         <span className='substitutions__list__item__divider'></span>
-                        <div className="substitutions__list__item__icon">{<OutIcon />}</div>{sub.out}
+                        <div className="substitutions__list__item__icon"><OutIcon /></div>{sub.out}
                     </li>
                 )) : null}
             </ul>

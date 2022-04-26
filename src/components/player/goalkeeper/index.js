@@ -14,13 +14,13 @@ export default function Goalkeeper({matches, cleanSheets, goalsConceded}) {
     }
 
     return (
-        <article className="goalkeeper">
+        <section className="goalkeeper">
             <SectionTitle title="Como goleiro"/>
             <div className="goalkeeper__numbers">
                 {renderItem(matches, "Jogos")}
                 {renderItem(cleanSheets, "Sem sofrer gol")}
                 {renderItem(goalsConceded, "Gols sofridos")}
             </div>
-        </article>
+        </section>
     )
 }

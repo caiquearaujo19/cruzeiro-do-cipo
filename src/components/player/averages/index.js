@@ -20,12 +20,12 @@ export default function Averages({player}) {
     }
 
     return (
-        <article className="averages">
+        <section className="averages">
             <SectionTitle title="Médias"/>
             <div className="averages__numbers">
                 {renderItem(goalAverage, "Gols por jogo")}
                 {renderItem(assitAverage, "Assist. por jogo")}
             </div>
-        </article>
+        </section>
     )
 }

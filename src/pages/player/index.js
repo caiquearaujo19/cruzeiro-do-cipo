@@ -6,7 +6,7 @@ import Averages from '../../components/player/averages'
 import firebaseDb from '../../firebase'
 import { useAppStore } from '../../AppStore'
 import Goalkeeper from '../../components/player/goalkeeper'
-import MatchesList from '../../components/matches/matches-list'
+import PlayerMatches from '../../components/player/matches'
 import './style.scss'
 
 export default function StatsScreen() {
@@ -71,10 +71,7 @@ export default function StatsScreen() {
           />
         : null
       }
-      <MatchesList matches={playerMatches}/>
-      {/* <section className="player-screen__coming-soon">
-        Em breve mais informações
-      </section> */}
+      <PlayerMatches matches={playerMatches} player={player}/>
     </article>
   )
 }
