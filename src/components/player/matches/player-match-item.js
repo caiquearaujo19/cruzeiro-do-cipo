@@ -16,12 +16,14 @@ export default function PlayerMatchItem({matchId, match, player}) {
   const goalsAdversary = !match.away ? match.awayTeam.goals : match.homeTeam.goals
 
   const enteredTheMatch = () => {
-    let r = false;
-    match.substitutions.forEach(sub => {
-      if (sub.in === player.name) {
-        r = true;
-      }
-    })
+    let r = false
+    if(match.substitutions) {
+      match.substitutions.forEach(sub => {
+        if (sub.in === player.name) {
+          r = true
+        }
+      })
+    }
     if(r) {
       return (
         <div className='player-match-item__content__events__item'>
@@ -87,12 +89,14 @@ export default function PlayerMatchItem({matchId, match, player}) {
   }
 
   const leftTheMatch = () => {
-    let r = false;
-    match.substitutions.forEach(sub => {
-      if (sub.out === player.name) {
-        r = true;
-      }
-    })
+    let r = false
+    if(match.substitutions) {
+      match.substitutions.forEach(sub => {
+        if (sub.out === player.name) {
+          r = true
+        }
+      })
+    }
     if(r) {
       return (
         <div className='player-match-item__content__events__item'>
