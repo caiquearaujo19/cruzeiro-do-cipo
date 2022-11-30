@@ -10,6 +10,7 @@ import MatchScreen from './pages/match'
 import PlayerScreen from './pages/player'
 import TopScorersScreen from './pages/top-scorers'
 import TopAssistsScreen from './pages/top-assists'
+import MostMatchesScreen from './pages/most-matches'
 import TopGoalkeepersScreen from './pages/top-goalkeepers'
 import RegisterScreen from './pages/register'
 
@@ -55,6 +56,10 @@ function App() {
           <Route
             path="/top-assists"
             component={TopAssistsScreen}
+          />
+          <Route
+            path="/most-matches"
+            component={MostMatchesScreen}
           />
           <Route
             path="/goalkeepers"

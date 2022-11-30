@@ -6,7 +6,8 @@ import PlayersRankingListItem from './players-ranking-list-item'
 import {
   orderListByGoals,
   orderListByAssists,
-  orderListByCleanSheets
+  orderListByCleanSheets,
+  orderListByNumberOfMatches
 } from '../../../utils/js-utils/sorters'
 import { useAppStore } from '../../../AppStore'
 import './style.scss'
@@ -24,6 +25,9 @@ export default function PlayersRanking({title, icon, list, seeMorePath}) {
         break
       case "Assistências":
         list.sort(orderListByAssists(year))
+        break
+      case "Mais jogos":
+        list.sort(orderListByNumberOfMatches(year))
         break
       case "Goleiros":
         list.sort(orderListByCleanSheets(year))

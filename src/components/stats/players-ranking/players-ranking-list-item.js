@@ -25,7 +25,8 @@ export default function PlayersRankingListItem({item, context, ranking}) {
             </div>
           :
             <div className="players-ranking-list-item__content__value">
-              { item[year] ?context === "Artilheiros" ? item[year].goals : item[year].assists : null }
+              {
+                item[year] ? context === "Artilheiros" ? item[year].goals : context === "Mais jogos" ? item[year].matches : item[year].assists : null }
             </div>
         }
       </Link>

@@ -18,6 +18,16 @@ export const orderListByAssists = (year) => {
     }
 }
 
+export const orderListByNumberOfMatches = (year) => {
+    return (a, b) => {
+        if(a[year] && b[year]) {
+            if(a[year].matches < b[year].matches) {return 1}
+            if(b[year].matches < a[year].matches) {return -1}
+        }
+        return 0
+    }
+}
+
 export const orderListByCleanSheets = (year) => {
     return (a, b) => {
         if(a[year] && b[year]) {
