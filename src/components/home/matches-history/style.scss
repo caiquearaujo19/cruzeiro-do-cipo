@@ -1,0 +1,15 @@
+@import '../../../utils/sass-utils/variables.scss';
+
+.matches-history {
+  height: calc(100vh - 234px);
+  background-color: $background;
+
+  &__list {
+    height: calc(100vh - 309px);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    background-color: $background;
+  }
+}

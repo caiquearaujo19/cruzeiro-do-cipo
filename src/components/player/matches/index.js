@@ -24,7 +24,7 @@ export default function PlayerMatches({matches, player}) {
   return (
     <section className="player-matches">
         <SectionTitle title="Jogos" color="blue"/>
-        <ul className="matches-list">
+        <ul className="player-matches__matches-list">
             {Object.keys(matches).map(id => {
               if(playedAsAStarter(matches[id]) || playedAsAReserve(matches[id])) {
                 return <PlayerMatchItem key={id} matchId={id} match={matches[id]} player={player}/>

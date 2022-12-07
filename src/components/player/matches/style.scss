@@ -3,8 +3,13 @@
 .player-matches {
     background-color: #F7F8Fc;
 
-    .matches-list {
-        overflow-y: visible;
+    &__matches-list {
+        height: calc(100vh - 484px);
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        overflow-y: auto;
+        background-color: $background;
         
         .player-match-item {
             &:not(:last-child) {
