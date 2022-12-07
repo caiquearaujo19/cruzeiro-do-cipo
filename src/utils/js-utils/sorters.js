@@ -42,5 +42,11 @@ export const orderListByCleanSheets = (year) => {
 const orderKeepersByMatches = (a, b, year) => {
     if(a[year].goalkeeper?.matches < b[year].goalkeeper?.macthes) {return 1}
     if(b[year].goalkeeper?.matches < a[year].goalkeeper?.matches) {return -1}
+    return orderKeepersByGoalsConceded(a, b, year)
+}
+
+const orderKeepersByGoalsConceded = (a, b, year) => {
+    if(a[year].goalkeeper?.goalsConceded > b[year].goalkeeper?.goalsConceded) {return 1}
+    if(b[year].goalkeeper?.goalsConceded > a[year].goalkeeper?.goalsConceded) {return -1}
     return 0
 }
