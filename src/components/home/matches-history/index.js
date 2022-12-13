@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import SectionTitle from '../../section-title'
 import MatchesListItem from '../../matches/matches-list/matches-list-item'
 import './style.scss'
