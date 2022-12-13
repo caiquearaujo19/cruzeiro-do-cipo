@@ -58,6 +58,7 @@ export default function RegisterScreen() {
   const registerMatch = () => {
     let match = {
         away: true,
+        adversary: "Várzea da Onça",
         homeTeam: {
           emblemShape: 0,
           goals: 2,
