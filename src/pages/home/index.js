@@ -34,15 +34,10 @@ export default function HomeScreen() {
             ...snapshot.val()
           })
         }
+        setLoadingHistory(false)
       })
     }
   }, [nextMatch])
-
-  useEffect(() => {
-    if(Object.keys(matchesHistory).length) {
-      setLoadingHistory(false)
-    }
-  }, [matchesHistory])
 
   return (
     <article className="home-screen">
@@ -53,7 +48,6 @@ export default function HomeScreen() {
         </div>
       :
         <div className='home-screen__matches-history'>
-          <span>{matchesHistory[0]}</span>
           <MatchesHistory matches={matchesHistory}/>
         </div>
       }

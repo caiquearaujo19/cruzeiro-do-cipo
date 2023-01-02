@@ -9,11 +9,14 @@ export default function MatchesHistory({matches}) {
     <section className="matches-history">
       <SectionTitle title="Histórico do confronto" color="blue"/>
       <ul className="matches-history__list">
-        {matches ?
+        {Object.keys(matches).length ?
           Object.keys(matches).map(id => (
             <MatchesListItem key={id} matchId={id} match={matches[id]} />
           )).reverse()
-        : null}
+        : <div className='matches-history__not-found'>
+            Nenhum confronto registrado
+          </div>
+        }
       </ul>
     </section>
   )
