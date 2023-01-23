@@ -12,4 +12,13 @@
     overflow-y: auto;
     background-color: $background;
   }
+
+  &__not-found {
+    height: calc(100% - 56px);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: gray;
+  }
 }

@@ -1,0 +1,33 @@
+.register-next-match {
+    &__loader-container {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__content {
+        &__form {
+            & > .form-item {
+                margin-bottom: 20px;
+            }
+            padding: 20px;
+        }
+    }
+}
+
+.emblem-select-item {
+    display: flex;
+    align-items: center;
+
+    & > span {
+        display: block;
+        height: 30px;
+        width: 30px;
+        margin-right: 10px;
+    }
+}
+
+.ant-radio-button-wrapper {
+    width: 50%;
+}

@@ -13,6 +13,7 @@ import TopAssistsScreen from './pages/top-assists'
 import MostMatchesScreen from './pages/most-matches'
 import TopGoalkeepersScreen from './pages/top-goalkeepers'
 import RegisterScreen from './pages/register'
+import RegisterNextMatch from './pages/register/register-next-match'
 
 function App() {
   return (
@@ -68,6 +69,10 @@ function App() {
           <Route
             path="/register"
             component={RegisterScreen}
+          />
+          <Route
+            path="/r/next-match"
+            component={RegisterNextMatch}
           />
         </Switch>
       </BrowserRouter>
