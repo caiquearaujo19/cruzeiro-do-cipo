@@ -4,12 +4,13 @@ import Loader from '../../../components/loader'
 import SectionTitle from '../../../components/section-title'
 import Emblem from '../../../components/emblem'
 import { Input, Select, Radio, Button, message } from 'antd'
+import { emblems } from '../../../utils/js-utils/emblems'
 import './style.scss'
 
 export default function RegisterNextMatch() {
 
-  const [nextMatch, setNextMatch] = useState({})
-  const [loadingNextMatch, setLoadingNextMatch] = useState(false)
+	const [nextMatch, setNextMatch] = useState({})
+	const [loadingNextMatch, setLoadingNextMatch] = useState(false)
 
 	const [adversary, setAdversary] = useState("")
 	const [emblem, setEmblem] = useState(0)
@@ -19,15 +20,13 @@ export default function RegisterNextMatch() {
 	const [registering, setRegistering] = useState(false)
 
 	const { Option } = Select
-	const [messageApi, contextHolder] = message.useMessage();
+	const [messageApi, contextHolder] = message.useMessage()
 
   useEffect(() => {
     setLoadingNextMatch(true)
     firebaseDb.child('next-match').on('value', snapshot => {
       if(snapshot.val() !== null) {
-        setNextMatch({
-          ...snapshot.val()
-        })
+        setNextMatch({...snapshot.val()})
         setLoadingNextMatch(false)
       }
     })
@@ -46,7 +45,7 @@ export default function RegisterNextMatch() {
 		messageApi.open({
       type: type,
       content: content,
-    });
+    })
 	}
 
 	const register = () => {
@@ -99,62 +98,18 @@ export default function RegisterNextMatch() {
 								size="large"
 								onChange={(value) => setEmblem(value)}
 							>
-								<Option value="0" label="Palmeiras / Grêmio / Inter">
-									<div className="emblem-select-item">
-										<span role="img" aria-label="Palmeiras / Grêmio / Inter">
-											<Emblem shape={0} colorful />
-										</span>
-										Palmeiras / Grêmio / Inter
-									</div>
-								</Option>
-								<Option value="1" label="Flamengo">
-									<div className="emblem-select-item">
-										<span role="img" aria-label="Flamengo">
-											<Emblem shape={1} colorful />
-										</span>
-										Flamengo
-									</div>
-								</Option>
-								<Option value="2" label="São Paulo / Fortaleza">
-									<div className="emblem-select-item">
-										<span role="img" aria-label="São Paulo / Fortaleza">
-											<Emblem shape={2} colorful />
-										</span>
-										São Paulo / Fortaleza
-									</div>
-								</Option>
-								<Option value="3" label="Milan">
-									<div className="emblem-select-item">
-										<span role="img" aria-label="Milan">
-											<Emblem shape={3} colorful />
-										</span>
-										Milan
-									</div>
-								</Option>
-								<Option value="4" label="Santos">
-									<div className="emblem-select-item">
-										<span role="img" aria-label="Santos">
-											<Emblem shape={4} colorful />
-										</span>
-										Santos
-									</div>
-								</Option>
-								<Option value="5" label="Fluminense / Atlético">
-									<div className="emblem-select-item">
-										<span role="img" aria-label="Fluminense / Atlético">
-											<Emblem shape={5} colorful />
-										</span>
-										Fluminense / Atlético
-									</div>
-								</Option>
-								<Option value="6" label="Vasco">
-									<div className="emblem-select-item">
-										<span role="img" aria-label="Vasco">
-											<Emblem shape={6} colorful />
-										</span>
-										Vasco
-									</div>
-								</Option>
+								{
+									emblems.map(emblem => 
+										<Option key={emblem.shape} value={emblem.shape} label={emblem.description}>
+											<div className="emblem-select-item">
+												<span role="img" aria-label={emblem.description}>
+													<Emblem shape={emblem.shape} colorful />
+												</span>
+												{emblem.description}
+											</div>
+										</Option>
+									)
+								}
 							</Select>
 						</div>
 						<div className='form-item'>

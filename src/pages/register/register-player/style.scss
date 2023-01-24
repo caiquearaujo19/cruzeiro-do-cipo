@@ -1,0 +1,17 @@
+.register-player {
+    &__loader-container {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__content {
+        &__form {
+            & > .form-item {
+                margin-bottom: 20px;
+            }
+            padding: 20px;
+        }
+    }
+}

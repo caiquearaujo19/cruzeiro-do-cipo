@@ -5,7 +5,6 @@ import './App.scss'
 import HomeScreen from './pages/home'
 import MatchesScreen from './pages/matches'
 import StatsScreen from './pages/stats'
-import ReportScreen from './pages/report'
 import MatchScreen from './pages/match'
 import PlayerScreen from './pages/player'
 import TopScorersScreen from './pages/top-scorers'
@@ -14,8 +13,25 @@ import MostMatchesScreen from './pages/most-matches'
 import TopGoalkeepersScreen from './pages/top-goalkeepers'
 import RegisterScreen from './pages/register'
 import RegisterNextMatch from './pages/register/register-next-match'
+import RegisterPlayer from './pages/register/register-player'
 
 function App() {
+
+  const routes = [
+    {path: "/home", component: HomeScreen},
+    {path: "/matches", component: MatchesScreen},
+    {path: "/stats", component: StatsScreen},
+    {path: "/match/:id", component: MatchScreen},
+    {path: "/player/:id", component: PlayerScreen},
+    {path: "/top-scorers", component: TopScorersScreen},
+    {path: "/top-assists", component: TopAssistsScreen},
+    {path: "/most-matches", component: MostMatchesScreen},
+    {path: "/goalkeepers", component: TopGoalkeepersScreen},
+    {path: "/register", component: RegisterScreen},
+    {path: "/r/next-match", component: RegisterNextMatch},
+    {path: "/r/player", component: RegisterPlayer},
+  ]
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -25,55 +41,15 @@ function App() {
             path="/"
             render={() => <Redirect to="/home"/>}
           />
-
-          <Route
-            path="/home"
-            component={HomeScreen}
-          />
-          <Route
-            path="/matches"
-            component={MatchesScreen}
-          />
-          <Route
-            path="/stats"
-            component={StatsScreen}
-          />
-          <Route
-            path="/report/:id"
-            component={ReportScreen}
-          />
-          <Route
-            path="/match/:id"
-            component={MatchScreen}
-          />
-          <Route
-            path="/player/:id"
-            component={PlayerScreen}
-          />
-          <Route
-            path="/top-scorers"
-            component={TopScorersScreen}
-          />
-          <Route
-            path="/top-assists"
-            component={TopAssistsScreen}
-          />
-          <Route
-            path="/most-matches"
-            component={MostMatchesScreen}
-          />
-          <Route
-            path="/goalkeepers"
-            component={TopGoalkeepersScreen}
-          />
-          <Route
-            path="/register"
-            component={RegisterScreen}
-          />
-          <Route
-            path="/r/next-match"
-            component={RegisterNextMatch}
-          />
+          {
+            routes.map(route =>
+              <Route
+                key={route.path}
+                path={route.path}
+                component={route.component}
+              />
+            )
+          }
         </Switch>
       </BrowserRouter>
     </div>
