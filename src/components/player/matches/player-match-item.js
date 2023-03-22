@@ -71,6 +71,7 @@ export default function PlayerMatchItem({matchId, match, player}) {
     let r = false
     let count = 0
     if(assists) {
+      console.log(assists)
       assists.forEach(ass => {
         if(ass.name === player.name) {
           r = true

@@ -5,8 +5,8 @@ import MatchEvents from '../../components/match/match-events'
 import LineUp from '../../components/match/line-up'
 import { useParams } from "react-router-dom"
 import firebaseDb from '../../firebase'
-import './style.scss'
 import Substitutions from '../../components/match/substitutions'
+import './style.scss'
 
 export default function MatchScreen() {
 

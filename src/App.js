@@ -14,6 +14,7 @@ import TopGoalkeepersScreen from './pages/top-goalkeepers'
 import RegisterScreen from './pages/register'
 import RegisterNextMatch from './pages/register/register-next-match'
 import RegisterPlayer from './pages/register/register-player'
+import RegisterMatch from './pages/register/register-match'
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
     {path: "/register", component: RegisterScreen},
     {path: "/r/next-match", component: RegisterNextMatch},
     {path: "/r/player", component: RegisterPlayer},
+    {path: "/r/match", component: RegisterMatch},
   ]
 
   return (
